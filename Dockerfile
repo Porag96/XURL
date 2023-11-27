@@ -1,4 +1,4 @@
-# Use an official OpenJDK runtime as a parent image
+# Use an official OpenJDK as a parent image
 FROM adoptopenjdk:11-jre-hotspot
 
 # Set the working directory to /app
@@ -6,6 +6,9 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 COPY . /app
+
+# Install OpenJDK for compilation
+RUN apt-get update && apt-get install -y openjdk-11-jdk
 
 # Grant execute permissions to the Gradle wrapper script
 RUN chmod +x ./gradlew
